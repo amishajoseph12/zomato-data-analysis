@@ -1,0 +1,53 @@
+-- Display restaurants with rating 4.0 or above
+
+SELECT restaurant_name, rating
+FROM zomato
+WHERE rating >= 4.0;
+
+
+
+
+-- Count restaurants in each area
+
+SELECT area, COUNT(*) AS total_restaurants
+FROM zomato
+GROUP BY area
+ORDER BY total_restaurants DESC;
+
+
+
+-- Average cost for two people in each restaurant type
+
+SELECT restaurant_type,
+AVG(avg_cost_two_peo) AS average_cost
+FROM zomato
+GROUP BY restaurant_type
+ORDER BY average_cost DESC;
+
+
+-- Areas having more than 100 restaurants
+
+SELECT area,
+COUNT(*) AS total_restaurants
+FROM zomato
+GROUP BY area
+HAVING COUNT(*) > 100;
+
+
+-- Restaurants whose names start with 'A'
+
+SELECT restaurant_name
+FROM zomato
+WHERE restaurant_name LIKE 'A%';
+
+
+-- Restaurant types with average rating above 4
+
+SELECT restaurant_type,
+COUNT(*) AS total_restaurants,
+AVG(rating) AS average_rating
+FROM zomato
+WHERE online_order='Yes'
+GROUP BY restaurant_type
+HAVING AVG(rating) > 4
+ORDER BY average_rating DESC;
